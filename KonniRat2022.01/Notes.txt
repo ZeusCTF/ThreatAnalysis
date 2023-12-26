@@ -4,3 +4,20 @@ An organization unfortunately has limited options when it comes to detecting the
 Other explored avenues might include a WAF implementation with custom rulesets to prevent a user from accessing suspicious websites, but effectiveness of this method is dependent on the ruleset and overall implementation.  
 Other ideas may include routine domain monitoring, however this requires vigilance on the part of an organization’s administrators, and any reliance upon purely human protection is often susceptible in one way or another.  
 Ideally, some combination of each preventative measure is enacted, in which an organization routinely provides engaging security awareness training along with frequent domain monitoring (perhaps in an automated manner) and implements a WAF to catch requests leading out to domains not specifically allowed.
+
+After a user begins this process, it's safe to consider their machine compromised.  While in this case no direct compromise of their machine was done, the effect is similar once crednetials have been stolen.
+Upon harvesting the user credentials, emails sent from the compromised accounts gain legitimacy as they appear to be coming from a trusted source.
+This is where proper user training becomes vital, as even though the email may appear to be legitimate, users should always be asking if the email makes "sense".
+In this scenario, the attackers provided a .zip file within the email, and included a message directing the users to download and view the attachment as a form of holliday celebration.
+Proper training would increase the suspicion level of any individuals who recieved this message, and may lead to proper reporting of the message (net positive for blue team members) or dismissal of the message entirely (which is also beneficial).
+
+One idea here could be to monitor any transmission of messages containing certain dangerous filetypes as attachments, or more plainly, emails with attachements in general.
+The issue with selectively choosing which filetypes to monitor is that this can easily be circumvented from an attackers perspective - thus making it a less viable strategy than monitoring all filetypes (though obviously this would be a large number of emails being tracked).
+IDS systems or other anti-malware technology may be configured to scan incoming messages, which may be the ideal solution for these types of threats as scanners can be configured to determine potentially malicious files and confirm the legitimacy of others.
+Though in using this method, you're organization is at the mercy of the scanner/IDS system's quality.
+
+For the Konni malware in particular, if the files were able to be executed, they initiate a callback to a domain under the attacker's control.
+If proper monitoring is implemented by the organization’s Blue Team, these DNS requests should be flagged as going to untrusted, or at least uncommon domains.
+Any domain flagged in this manner should then be investigated per the organization’s procedures, upon which they would (presumably) be able to deduce that the domain/request is malicious.
+If the callback is allowed to go through, the malware will likely be created on the system as there is no "download" necessariy done due to the malware being created using the b64 response given by the attacker server.
+
