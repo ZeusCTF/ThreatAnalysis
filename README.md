@@ -1,2 +1,1 @@
-This project is designed to showcase simplified demonstrations of previous cybersecurity threats for educational purposes. 
-The goal is to allow users to understand and analyze the tactics, techniques, and procedures (TTPs) employed by cyber adversaries.
+This project is intended to explain various techniques employed by malicious actors, alongside analysis of "real" malware samples. 
